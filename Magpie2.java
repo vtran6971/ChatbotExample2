@@ -79,4 +79,18 @@ public class Magpie2
 
 		return response;
 	}
+
+	private String transformIWantToStatement (String statement)
+	{
+		statement = statement.trim();
+		String lastChar = statement.substring(statement.length()-1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0,statement.length() -1);
+		}
+		int psn = findKeyword (statement, "I want to", 0);
+		String restofStatement = statement.substring(psn + 9).trim();
+		return "What would it mean to " + restofStatement + "?";
+
+	}
 }
